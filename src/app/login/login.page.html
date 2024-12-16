@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Iniciar Sesión</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="login-page">
+  <!-- Fondo y diseño general -->
+  <div class="header-container">
+    <div class="text-container">
+      <h1>Iniciar Sesión</h1>
+      <p>Bienvenido de vuelta</p>
+    </div>
+  </div>
+
+  <ion-card class="action-card animate__animated animate__fadeInUp">
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" (click)="login()">Iniciar Sesión</ion-button>
+      <ion-button expand="block" fill="clear" routerLink="/register">Crear una cuenta</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

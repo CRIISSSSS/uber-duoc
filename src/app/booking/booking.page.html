@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reservar Viaje</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="booking-page">
+  <!-- Fondo y diseño general -->
+  <div class="header-container">
+    <div class="text-container">
+      <h1>Reservar Viaje</h1>
+      <p>Elige un viaje disponible</p>
+    </div>
+  </div>
+
+  <ion-card *ngFor="let viaje of viajes" class="action-card animate__animated animate__fadeInUp">
+    <ion-card-header>
+      <ion-card-title>{{ viaje.destino }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Costo: {{ viaje.costo }} CLP</p>
+      <p>Pasajeros disponibles: {{ viaje.cantPasajeros - viaje.reservaciones.length }}</p>
+      <p>Hora de salida: {{ viaje.horaSalida.toDate() | date: 'short' }}</p>
+      <ion-button expand="block" (click)="reservar(viaje.id)">Reservar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

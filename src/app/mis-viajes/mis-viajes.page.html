@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Viajes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-page">
+  <div class="header-container">
+    <div class="text-container">
+      <h1>Mis Viajes</h1>
+      <p>Aquí puedes gestionar los viajes que has creado.</p>
+    </div>
+  </div>
+
+  <div *ngIf="viajesCreados.length === 0" class="text-container">
+    <p>No has creado viajes aún.</p>
+  </div>
+
+  <div *ngFor="let viaje of viajesCreados; let i = index" class="action-card">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ direcciones[i] || 'Destino Desconocido' }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Hora de Salida:</strong> {{ viaje.horaSalida.toDate() | date:'medium' }}</p>
+        <p><strong>Patente:</strong> {{ viaje.patente }}</p>
+        <p><strong>Pasajeros:</strong> {{ viaje.cantPasajeros }}</p>
+        <ion-button expand="block" color="danger" (click)="cancelarViaje(viaje.id)">
+          Cancelar Viaje
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

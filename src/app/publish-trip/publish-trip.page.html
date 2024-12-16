@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicar Viaje</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="publish-trip-page">
+  <div class="header-container">
+    <div class="text-container">
+      <h1>Publicar Viaje</h1>
+      <p>Completa los detalles de tu viaje</p>
+    </div>
+  </div>
+
+  <ion-card class="action-card animate__animated animate__fadeInUp">
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Destino</ion-label>
+        <ion-input 
+          #autocompleteInput 
+          placeholder="Ingresa una dirección" 
+          type="text" 
+          (ionInput)="onSearch($event)"
+          [(ngModel)]="destinoInput">
+        </ion-input>
+      </ion-item>
+      
+      <!-- Listado de sugerencias -->
+      <ion-list *ngIf="suggestions.length > 0" class="suggestions-list">
+        <ion-item *ngFor="let suggestion of suggestions" (click)="selectSuggestion(suggestion)" class="suggestion-item">
+          <ion-label>{{ suggestion.displayName }}</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Costo</ion-label>
+        <ion-input type="number" [(ngModel)]="costo"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Número de Pasajeros</ion-label>
+        <ion-input type="number" [(ngModel)]="cantPasajeros"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Patente del Vehículo</ion-label>
+        <ion-input [(ngModel)]="patente"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Hora de Salida</ion-label>
+        <ion-datetime [(ngModel)]="horaSalida"></ion-datetime>
+      </ion-item>
+
+      <ion-button expand="block" (click)="publishTrip()">Publicar Viaje</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
